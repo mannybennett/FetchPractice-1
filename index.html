@@ -14,8 +14,10 @@
   <!-- When you click this button the posts collected from the fetch request will be displayed below in the ul element with the id='all-posts' -->
   <button onclick="displayPost(arrayOfPosts)">Display Posts</button>
   <button onclick="fetchFivePosts()">Fetch 5 Posts</button>
-  <button onclick="">Fetch Comments</button>
+  <button onclick="fetchComments(arrayOfPosts)">Fetch Comments</button>
   <button onclick="fetchUsers(arrayOfPosts)">Fetch Users</button>
+  <button onclick="newPost()">New Post</button>
+  <button onclick="editPost()">Edit Post</button>
   <div>
     <h3>All Posts</h3>
     <ul id='all-posts'></ul>

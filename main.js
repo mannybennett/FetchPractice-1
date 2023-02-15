@@ -12,9 +12,54 @@ const getPosts = () => {
     .then(posts => arrayOfPosts = posts)
 }
 
+const newPost = () => {
+  fetch('https://jsonplaceholder.typicode.com/posts', {
+  method: 'POST',
+  body: JSON.stringify({
+    userId: 1,
+    title: 'occaecati omnis',
+    body: 'amet autem assumenda provident rerum culpa\nquis hic commodi nesciunt rem tenetur doloremque ipsam iure\nquis sunt voluptatem rerum illo',
+  }),
+  headers: {
+    'Content-type': 'application/json; charset=UTF-8',
+  },
+})
+  .then(res => res.json())
+  .then(newPost => console.log(newPost));
+}
+
+const editPost = () => {
+  fetch('https://jsonplaceholder.typicode.com/posts/1', {
+  method: 'PUT',
+  body: JSON.stringify({
+    id: 1,
+    title: 'foo',
+    body: 'bar',
+    userId: 1,
+  }),
+  headers: {
+    'Content-type': 'application/json; charset=UTF-8',
+  },
+})
+  .then(res => res.json())
+  .then(edit => console.log(edit));
+}
+
 const fetchFivePosts = () => {
   const fivePosts = arrayOfPosts.slice(0, 5)
   displayPost(fivePosts)
+}
+
+const fetchComments = (arr) => {
+  const allPosts = document.getElementById('all-posts')
+  allPosts.innerHTML = ''
+  let comments = arr.map(post => uniqueUsers = post.body)
+  comments.map(com => {
+    const li = document.createElement('li')
+    const text = document.createTextNode(`Comment: ${com}`)
+    li.appendChild(text)
+    allPosts.append(li)
+  })
 }
 
 const fetchUsers = (arr) => {

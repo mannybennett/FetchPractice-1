@@ -5,12 +5,35 @@ window.onload = function() {
   getPosts()
 }
 
+const checkFetch = (response) => {
+  if (!response.ok) {
+    throw Error(`${response.statusText} - ${response.url}`)
+  }
+  return response
+}
+
 // This function is going to make a fetch request to the URL inside its parameter brackets (). Then it will turn the response (data it's getting back), saved here as res. The res.json will not be saved as posts and saved into the variable, arrayOfPosts
 const getPosts = () => {
-  fetch('http://jsonplaceholder.typicode.com/posts')
+  fetch('http://jsonplaceholde.typicode.com/posts')
+    .then(checkFetch)
     .then(res => res.json())
     .then(posts => arrayOfPosts = posts)
+    .catch(error => {
+      console.log("Error")
+      console.log(error)
+    })
 }
+
+// const getPosts = () => {
+//   fetch('http://jsonplaceholde.typicode.com/posts')
+//   .then(res => {
+//     if(!res.ok) {
+//       throw Error(res.statusText)
+//     } return res.json()
+//   })
+//   .then(posts => arrayOfPosts = posts)
+//   .catch(err => console.log(`Error,  ${err}`))
+// }
 
 const newPost = () => {
   fetch('https://jsonplaceholder.typicode.com/posts', {
